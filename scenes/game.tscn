@@ -139,5 +139,17 @@ offset_top = -112.0
 offset_right = 232.0
 offset_bottom = -72.0
 
+[node name="VanStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
+offset_left = 192.0
+offset_top = -72.0
+offset_right = 232.0
+offset_bottom = -32.0
+
+[node name="TruckStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
+offset_left = 192.0
+offset_top = -32.0
+offset_right = 232.0
+offset_bottom = 8.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

@@ -12,10 +12,14 @@ var status: float
 var disabled: bool
 var label: Label
 var status_bar: ProgressBar
-var button: Button
+var purchase_button: Button
+var staff_control: Control
 
 
-func _init(t: String, p: int, v: int, d: float, a: int, s: int, o: int, st: float, db: bool, l: Label, sb: ProgressBar, b: Button):
+func _init(t: String, p: int, v: int, d: float,
+			a: int, s: int, o: int, st: float,
+			db: bool, l: Label, sb: ProgressBar,
+			pb: Button, sc: Control):
 	type = t
 	price = p
 	value = v
@@ -27,7 +31,8 @@ func _init(t: String, p: int, v: int, d: float, a: int, s: int, o: int, st: floa
 	disabled = db
 	label = l
 	status_bar = sb
-	button = b
+	purchase_button = pb
+	staff_control = sc
 	
 	if (disabled):
 		update_disabled(true)
@@ -41,7 +46,7 @@ func purchase(buy_mult: int):
 
 func update_text(buy_mult: int):
 	label.text = str(type) + " x " + str(amount)
-	button.text = "Buy " + str(buy_mult) + "\n$" + str(price)
+	purchase_button.text = "Buy " + str(buy_mult) + "\n$" + str(price)
 	
 func update_value_label():
 	status_bar.update_value_label("$" + str(value))
@@ -55,12 +60,12 @@ func update_per_second_label():
 func update_disabled(state: bool):
 	if state == true:
 		disabled = true
-		button.visible = false
+		purchase_button.visible = false
 		label.visible = false
 		status_bar.visible = false
 	else:
 		disabled = false
-		button.visible = true
+		purchase_button.visible = true
 		label.visible = true
 		status_bar.visible = true
 	
