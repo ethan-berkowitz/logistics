@@ -96,8 +96,8 @@ func update_all_value_labels():
 func update_all_vehicle_status(delta):
 	for vehicle in all_vehicles:
 		vehicle.update_per_second_label()
-		if vehicle.amount > 0:
-			vehicle.status += delta * vehicle.amount
+		if vehicle.amount > 0 and vehicle.staff > 0:
+			vehicle.status += delta * min(vehicle.amount, vehicle.staff)
 			vehicle.status_bar.value = vehicle.status / vehicle.duration
 			if vehicle.status >= vehicle.duration:
 				vehicle.status = 0.0
