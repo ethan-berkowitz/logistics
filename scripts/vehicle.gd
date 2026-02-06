@@ -42,11 +42,14 @@ func purchase(buy_mult: int):
 	var new = fp * 1.135
 	price = int(new)
 	amount += buy_mult
-	update_text(buy_mult)
+	update_purchase_text(buy_mult)
 
-func update_text(buy_mult: int):
+func update_purchase_text(buy_mult: int):
 	label.text = str(type) + " x " + str(amount)
 	purchase_button.text = "Buy " + str(buy_mult) + "\n$" + str(price)
+	
+func update_staff_text():
+	staff_control.staff_amount_label.text = str(staff)
 	
 func update_value_label():
 	status_bar.update_value_label("$" + str(value))

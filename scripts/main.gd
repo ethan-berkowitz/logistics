@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var money_label: Label = $OtherLabels/MoneyLabel
+@onready var unassigned_staff_label: Label = $Staff/UnassignedStaff
+@onready var total_staff_label: Label = $Staff/TotalStaff
 
 @onready var bike_label: Label = $VehicleLabels/BikeLabel
 @onready var bike_purchase: Button = $Buttons/BikePurchase
@@ -24,7 +26,8 @@ var bike: Vehicle
 var van: Vehicle
 var truck: Vehicle
 var all_vehicles: Array[Vehicle]
-var staff := 5
+var unassigned_staff := 5
+var total_staff := 5
 
 func _ready():
 
@@ -45,9 +48,8 @@ func _ready():
 	
 	connect_all_vehicle_buttons()
 	update_money(0)
-	update_all_vehicle_text()
+	update_all_vehicle_purchase_text()
 	update_all_value_labels()
-
 
 func connect_all_vehicle_buttons():
 	for vehicle in all_vehicles:
@@ -56,8 +58,11 @@ func connect_all_vehicle_buttons():
 		vehicle.staff_control.unary_operators.decrement.pressed.connect(vehicle_staff_pressed.bind(vehicle, -1))
 
 func vehicle_staff_pressed(vehicle: Vehicle, value: int):
-	vehicle.staff += value
-	print(str(vehicle.type) + " staff = " + str(vehicle.staff))
+	if (value > 0 and unassigned_staff > 0) or (value < 0 and vehicle.staff > 0):
+		vehicle.staff += value
+		unassigned_staff -= value
+		update_staff_text()
+		update_all_vehicle_staff_text()
 
 func _process(delta):
 	update_all_vehicle_status(delta)
@@ -72,9 +77,17 @@ func update_money(change: int):
 	money += change
 	money_label.text = "$" + str(money)
 	
-func update_all_vehicle_text():
+func update_staff_text():
+	total_staff_label.text = str(total_staff)
+	unassigned_staff_label.text = str(unassigned_staff)
+	
+func update_all_vehicle_purchase_text():
 	for vehicle in all_vehicles:
-		vehicle.update_text(buy_mult)
+		vehicle.update_purchase_text(buy_mult)
+		
+func update_all_vehicle_staff_text():
+	for vehicle in all_vehicles:
+		vehicle.update_staff_text()
 		
 func update_all_value_labels():
 	for vehicle in all_vehicles:

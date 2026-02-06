@@ -1,3 +1,4 @@
 res://scenes/game.tscn
 res://scripts/main.gd
 res://scripts/vehicle.gd
+res://scenes/vehicle_staff.tscn

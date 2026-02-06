@@ -16,51 +16,68 @@ script = ExtResource("1_4dnsm")
 [node name="Labels" type="Node2D" parent="Main"]
 
 [node name="OrdersHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -200.0
+offset_left = -240.0
 offset_top = -136.0
-offset_right = -146.0
+offset_right = -186.0
 offset_bottom = -110.0
 text = "Orders"
 
 [node name="VehicleHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -136.0
+offset_left = -176.0
 offset_top = -136.0
-offset_right = -72.0
+offset_right = -112.0
 offset_bottom = -110.0
 text = "Vehicles
 "
 
 [node name="PurchaseHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -56.0
+offset_left = -96.0
 offset_top = -136.0
-offset_right = 16.0
+offset_right = -24.0
 offset_bottom = -110.0
 text = "Purchase
 "
 
 [node name="StatusHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = 48.0
+offset_left = 8.0
 offset_top = -136.0
-offset_right = 97.0
+offset_right = 57.0
 offset_bottom = -110.0
 text = "Status"
 
 [node name="StaffHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = 152.0
+offset_left = 112.0
 offset_top = -136.0
-offset_right = 192.0
+offset_right = 152.0
 offset_bottom = -110.0
 text = "Staff"
 
 [node name="MoneyHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = 184.0
+offset_left = 200.0
 offset_top = -192.0
-offset_right = 224.0
-offset_bottom = -169.0
+offset_right = 253.0
+offset_bottom = -166.0
 text = "Money
 "
 
+[node name="TotalStaffHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = 200.0
+offset_top = -168.0
+offset_right = 253.0
+offset_bottom = -142.0
+text = "Total Staff
+"
+
+[node name="UnassignedStaffHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = 200.0
+offset_top = -144.0
+offset_right = 330.0
+offset_bottom = -118.0
+text = "Unassigned Staff
+"
+
 [node name="Buttons" type="Node2D" parent="Main"]
+position = Vector2(-40, 0)
 
 [node name="BikePurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
 offset_left = -56.0
@@ -81,6 +98,7 @@ offset_right = 15.5
 offset_bottom = -2.73
 
 [node name="VehicleLabels" type="Node2D" parent="Main"]
+position = Vector2(-40, 0)
 
 [node name="BikeLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
 offset_left = -136.0
@@ -104,34 +122,37 @@ offset_bottom = -6.0
 text = "Truck x 0"
 
 [node name="OtherLabels" type="Node2D" parent="Main"]
+position = Vector2(-40, 0)
 
 [node name="MoneyLabel" parent="Main/OtherLabels" instance=ExtResource("5_3bjag")]
-offset_left = 192.0
-offset_top = -168.0
-offset_right = 232.0
-offset_bottom = -145.0
+offset_left = 304.0
+offset_top = -192.0
+offset_right = 344.0
+offset_bottom = -166.0
+text = "10"
 
 [node name="Status" type="Node" parent="Main"]
 
 [node name="BikeStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 48.0
+offset_left = 8.0
 offset_top = -112.0
-offset_right = -135.872
+offset_right = -175.872
 offset_bottom = -159.504
 
 [node name="VanStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 48.0
+offset_left = 8.0
 offset_top = -72.0
-offset_right = -135.872
+offset_right = -175.872
 offset_bottom = -119.504
 
 [node name="TruckStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 48.0
+offset_left = 8.0
 offset_top = -32.0
-offset_right = -135.872
+offset_right = -175.872
 offset_bottom = -79.504
 
 [node name="Staff" type="Node2D" parent="Main"]
+position = Vector2(-40, 0)
 
 [node name="BikeStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
 offset_left = 192.0
@@ -150,6 +171,20 @@ offset_left = 192.0
 offset_top = -32.0
 offset_right = 232.0
 offset_bottom = 8.0
+
+[node name="UnassignedStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
+offset_left = 384.0
+offset_top = -144.0
+offset_right = 541.0
+offset_bottom = -118.0
+text = "5"
+
+[node name="TotalStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
+offset_left = 336.0
+offset_top = -168.0
+offset_right = 438.0
+offset_bottom = -142.0
+text = "5"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
