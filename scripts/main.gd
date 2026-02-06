@@ -1,8 +1,11 @@
 extends Node2D
 
 @onready var money_label: Label = $OtherLabels/MoneyLabel
+
 @onready var unassigned_staff_label: Label = $Staff/UnassignedStaff
 @onready var total_staff_label: Label = $Staff/TotalStaff
+@onready var recruit_status_bar = $Staff/RecruitStatusBar
+@onready var hire_staff_button = $Staff/HireStaffButton
 
 @onready var bike_label: Label = $VehicleLabels/BikeLabel
 @onready var bike_purchase: Button = $Buttons/BikePurchase
@@ -21,12 +24,19 @@ extends Node2D
 
 var money := 10
 var buy_mult := 1
+var all_vehicles: Array[Vehicle]
+
 var bike: Vehicle
 var van: Vehicle
 var truck: Vehicle
-var all_vehicles: Array[Vehicle]
+
 var unassigned_staff := 5
 var total_staff := 5
+var recruit_status := 0.0
+var recruit_duration := 20.0
+var recruit_duration_inc := 1.13
+var hire_staff_price := 100
+var hire_staff_price_inc := 1.25
 
 func _ready():
 	# price, value, duration
@@ -39,13 +49,39 @@ func _ready():
 	truck = Vehicle.new("Truck", 50, 300, 40.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
 	all_vehicles.append(truck)
 	
+	hire_staff_button.pressed.connect(hire_staff)
+	
 	connect_all_vehicle_buttons()
 	update_money(0)
 	update_all_vehicle_purchase_text()
 	update_all_value_labels()
+	update_hire_staff_text()
+
+func hire_staff():
+	if money >= hire_staff_price:
+		update_money(-hire_staff_price)
+		hire_staff_price *= hire_staff_price_inc
+		unassigned_staff += 1
+		total_staff += 1
+		update_staff_text()
+		update_hire_staff_text()
+
+func update_hire_staff_text():
+	hire_staff_button.text = "Hire Staff\n$" + str(hire_staff_price)
 
 func _process(delta):
 	update_all_vehicle_status(delta)
+	update_recruitment(delta)
+
+func update_recruitment(delta):
+	recruit_status += delta
+	recruit_status_bar.value = recruit_status / recruit_duration
+	if recruit_status >= recruit_duration:
+		recruit_status = 0.0
+		recruit_duration *= recruit_duration_inc
+		unassigned_staff += 1
+		total_staff += 1
+		update_staff_text()
 
 func connect_all_vehicle_buttons():
 	for vehicle in all_vehicles:

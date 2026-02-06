@@ -2,3 +2,5 @@ res://scenes/game.tscn
 res://scripts/main.gd
 res://scripts/vehicle.gd
 res://scenes/vehicle_staff.tscn
+res://scenes/progress_bar.tscn
+res://scenes/main_button.tscn
