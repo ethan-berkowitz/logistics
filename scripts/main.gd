@@ -19,7 +19,6 @@ extends Node2D
 @onready var truck_status_bar: ProgressBar = $Status/TruckStatusBar
 @onready var truck_staff = $Staff/TruckStaff
 
-
 var money := 10
 var buy_mult := 1
 var bike: Vehicle
@@ -30,26 +29,23 @@ var unassigned_staff := 5
 var total_staff := 5
 
 func _ready():
-
-	#bike_staff.unary_operators.increment.pressed.connect(bike_staff_pressed)
-	
 	# price, value, duration
 	bike = Vehicle.new("Bike", 10, 5, 1.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
-	#bike_purchase.pressed.connect(vehicle_purchase_pressed.bind(bike))
 	all_vehicles.append(bike)
 	
 	van = Vehicle.new("Van", 20, 100, 30.0, 0, 0, 0, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
-	#van_purchase.pressed.connect(vehicle_purchase_pressed.bind(van))
 	all_vehicles.append(van)
 
 	truck = Vehicle.new("Truck", 50, 300, 40.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
-	##truck_purchase.pressed.connect(vehicle_purchase_pressed.bind(truck))
 	all_vehicles.append(truck)
 	
 	connect_all_vehicle_buttons()
 	update_money(0)
 	update_all_vehicle_purchase_text()
 	update_all_value_labels()
+
+func _process(delta):
+	update_all_vehicle_status(delta)
 
 func connect_all_vehicle_buttons():
 	for vehicle in all_vehicles:
@@ -63,9 +59,6 @@ func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 		unassigned_staff -= value
 		update_staff_text()
 		update_all_vehicle_staff_text()
-
-func _process(delta):
-	update_all_vehicle_status(delta)
 
 func vehicle_purchase_pressed(vehicle: Vehicle):
 	if money >= vehicle.price * buy_mult:
