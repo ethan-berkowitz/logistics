@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck2u1giyqndgm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o7v7"]
+bg_color = Color(0.666667, 0.592157, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyy3k"]
+bg_color = Color(0.458824, 0.407843, 0.309804, 1)
+
+[node name="MainButton" type="Button"]
+offset_right = 64.0
+offset_bottom = 32.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o7v7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o7v7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0o7v7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hyy3k")
+text = "Buy 1"

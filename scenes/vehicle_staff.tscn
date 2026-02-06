@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs3da7nnx6gf2"]
+
+[ext_resource type="PackedScene" uid="uid://dgj3l2ahyg6ty" path="res://scenes/unary_operators.tscn" id="1_1dmqu"]
+[ext_resource type="Script" path="res://scripts/vehicle_staff.gd" id="1_mje2x"]
+[ext_resource type="PackedScene" uid="uid://dy4xx6bxqjaov" path="res://scenes/number_label.tscn" id="2_q3jew"]
+
+[node name="VehicleStaff" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mje2x")
+
+[node name="UnaryOperators" parent="." instance=ExtResource("1_1dmqu")]
+
+[node name="StaffAmountLabel" parent="." instance=ExtResource("2_q3jew")]
+layout_mode = 0
+offset_left = -32.0
+offset_right = 8.0
+offset_bottom = 26.0
+text = "0"

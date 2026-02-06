@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxxbi8x3nojln"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_4dnsm"]
+[ext_resource type="PackedScene" uid="uid://cv744psbwfgs1" path="res://scenes/main_label.tscn" id="2_ojbq5"]
+[ext_resource type="PackedScene" uid="uid://ck2u1giyqndgm" path="res://scenes/main_button.tscn" id="3_kbxrh"]
+[ext_resource type="PackedScene" uid="uid://bqr2ss1m04kyp" path="res://scenes/vehicle_label.tscn" id="4_csleg"]
+[ext_resource type="PackedScene" uid="uid://dy4xx6bxqjaov" path="res://scenes/number_label.tscn" id="5_3bjag"]
+[ext_resource type="PackedScene" uid="uid://6n4ioryd18bo" path="res://scenes/progress_bar.tscn" id="6_nh13f"]
+[ext_resource type="PackedScene" uid="uid://cs3da7nnx6gf2" path="res://scenes/vehicle_staff.tscn" id="7_67hdm"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Main" type="Node2D" parent="."]
+script = ExtResource("1_4dnsm")
+
+[node name="Labels" type="Node2D" parent="Main"]
+
+[node name="OrdersHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = -200.0
+offset_top = -136.0
+offset_right = -146.0
+offset_bottom = -110.0
+text = "Orders"
+
+[node name="VehicleHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = -136.0
+offset_top = -136.0
+offset_right = -72.0
+offset_bottom = -110.0
+text = "Vehicles
+"
+
+[node name="PurchaseHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = -56.0
+offset_top = -136.0
+offset_right = 16.0
+offset_bottom = -110.0
+text = "Purchase
+"
+
+[node name="StatusHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = 48.0
+offset_top = -136.0
+offset_right = 97.0
+offset_bottom = -110.0
+text = "Status"
+
+[node name="StaffHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = 152.0
+offset_top = -136.0
+offset_right = 192.0
+offset_bottom = -110.0
+text = "Staff"
+
+[node name="MoneyHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
+offset_left = 184.0
+offset_top = -192.0
+offset_right = 224.0
+offset_bottom = -169.0
+text = "Money
+"
+
+[node name="Buttons" type="Node2D" parent="Main"]
+
+[node name="BikePurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
+offset_left = -56.0
+offset_top = -112.0
+offset_right = 15.5
+offset_bottom = -82.73
+
+[node name="VanPurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
+offset_left = -56.0
+offset_top = -72.0
+offset_right = 15.5
+offset_bottom = -42.73
+
+[node name="TruckPurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
+offset_left = -56.0
+offset_top = -32.0
+offset_right = 15.5
+offset_bottom = -2.73
+
+[node name="VehicleLabels" type="Node2D" parent="Main"]
+
+[node name="BikeLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
+offset_left = -136.0
+offset_top = -112.0
+offset_right = -76.0
+offset_bottom = -86.0
+text = "Bike x 0"
+
+[node name="VanLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
+offset_left = -136.0
+offset_top = -72.0
+offset_right = -76.0
+offset_bottom = -46.0
+text = "Van x 0"
+
+[node name="TruckLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
+offset_left = -136.0
+offset_top = -32.0
+offset_right = -66.0
+offset_bottom = -6.0
+text = "Truck x 0"
+
+[node name="OtherLabels" type="Node2D" parent="Main"]
+
+[node name="MoneyLabel" parent="Main/OtherLabels" instance=ExtResource("5_3bjag")]
+offset_left = 192.0
+offset_top = -168.0
+offset_right = 232.0
+offset_bottom = -145.0
+
+[node name="Status" type="Node" parent="Main"]
+
+[node name="BikeStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
+offset_left = 48.0
+offset_top = -112.0
+offset_right = -135.872
+offset_bottom = -159.504
+
+[node name="VanStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
+offset_left = 48.0
+offset_top = -72.0
+offset_right = -135.872
+offset_bottom = -119.504
+
+[node name="TruckStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
+offset_left = 48.0
+offset_top = -32.0
+offset_right = -135.872
+offset_bottom = -79.504
+
+[node name="Staff" type="Node2D" parent="Main"]
+
+[node name="BikeStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
+offset_left = 192.0
+offset_top = -112.0
+offset_right = 232.0
+offset_bottom = -72.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

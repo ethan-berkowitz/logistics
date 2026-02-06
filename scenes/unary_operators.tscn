@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgj3l2ahyg6ty"]
+
+[ext_resource type="PackedScene" uid="uid://cocf0n7m4nk8d" path="res://scenes/unary_button.tscn" id="1_3cnsi"]
+[ext_resource type="Script" path="res://scripts/unary_operators.gd" id="1_dnnpd"]
+
+[node name="UnaryOperators" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dnnpd")
+
+[node name="Increment" parent="." instance=ExtResource("1_3cnsi")]
+layout_mode = 0
+theme_override_font_sizes/font_size = 5
+
+[node name="Plus" type="Label" parent="Increment"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 14
+text = "+"
+
+[node name="Decrement" parent="." instance=ExtResource("1_3cnsi")]
+layout_mode = 0
+offset_top = 16.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 5
+
+[node name="Minus" type="Label" parent="Decrement"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -4.0
+offset_right = 22.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 14
+text = "-"

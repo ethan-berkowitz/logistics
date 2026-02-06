@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cocf0n7m4nk8d"]
+
+[node name="UnaryButton" type="Button"]
+offset_right = 16.0
+offset_bottom = 16.0
+focus_mode = 0

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://6n4ioryd18bo"]
+
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="1_i31x0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgir5"]
+bg_color = Color(0.890196, 0.462745, 0.329412, 1)
+
+[node name="ProgressBar" type="ProgressBar"]
+anchors_preset = -1
+anchor_right = 0.118
+anchor_bottom = 0.049
+offset_right = -183.872
+offset_bottom = -47.504
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_wgir5")
+max_value = 1.0
+show_percentage = false
+script = ExtResource("1_i31x0")
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 17.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "$5"
+horizontal_alignment = 1
+
+[node name="PerSecondLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "$5/sec"
+horizontal_alignment = 1
