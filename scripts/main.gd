@@ -40,13 +40,13 @@ var hire_staff_price_inc := 1.25
 
 func _ready():
 	# price, value, duration
-	bike = Vehicle.new("Bike", 10, 5, 1.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
+	bike = Vehicle.new("Bike", 10, 5, 5.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
 	all_vehicles.append(bike)
 	
-	van = Vehicle.new("Van", 20, 100, 30.0, 0, 0, 0, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
+	van = Vehicle.new("Van", 20, 50, 25.0, 0, 0, 0, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
 	all_vehicles.append(van)
 
-	truck = Vehicle.new("Truck", 50, 300, 40.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
+	truck = Vehicle.new("Truck", 50, 100, 40.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
 	all_vehicles.append(truck)
 	
 	hire_staff_button.pressed.connect(hire_staff)
@@ -93,6 +93,7 @@ func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 	if (value > 0 and unassigned_staff > 0) or (value < 0 and vehicle.staff > 0):
 		vehicle.staff += value
 		unassigned_staff -= value
+		vehicle.update_per_second_label()
 		update_staff_text()
 		update_all_vehicle_staff_text()
 

@@ -57,7 +57,7 @@ func update_value_label():
 func update_per_second_label():
 	var perSec = 0
 	if amount > 0:
-		perSec = value / (duration / amount)
+		perSec = value / (duration / min(amount, staff))
 	status_bar.update_per_second_label("$" + str(perSec) + "/sec")
 	
 func update_disabled(state: bool):
