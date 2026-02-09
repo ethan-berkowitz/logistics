@@ -15,7 +15,8 @@ script = ExtResource("1_mje2x")
 
 [node name="StaffAmountLabel" parent="." instance=ExtResource("2_q3jew")]
 layout_mode = 0
-offset_left = -32.0
-offset_right = 8.0
-offset_bottom = 26.0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 54.0
 text = "0"

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck2u1giyqndgm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o7v7"]
-bg_color = Color(0.666667, 0.592157, 0.447059, 1)
+bg_color = Color(0.921569, 0.741176, 0.411765, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyy3k"]
-bg_color = Color(0.458824, 0.407843, 0.309804, 1)
+bg_color = Color(0.541176, 0.466667, 0.329412, 1)
 
 [node name="MainButton" type="Button"]
 offset_right = 64.0

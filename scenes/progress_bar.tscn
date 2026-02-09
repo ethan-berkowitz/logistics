@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://6n4ioryd18bo"]
+[gd_scene load_steps=4 format=3 uid="uid://6n4ioryd18bo"]
 
 [ext_resource type="Script" path="res://scripts/progress_bar.gd" id="1_i31x0"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdldl"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgir5"]
-bg_color = Color(0.890196, 0.462745, 0.329412, 1)
+bg_color = Color(0.85098, 0.454902, 0.196078, 1)
 
 [node name="ProgressBar" type="ProgressBar"]
 anchors_preset = -1
@@ -13,6 +15,7 @@ offset_right = 0.127998
 offset_bottom = 0.496002
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxEmpty_mdldl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wgir5")
 max_value = 1.0
 show_percentage = false

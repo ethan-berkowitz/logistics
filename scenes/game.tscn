@@ -136,22 +136,22 @@ offset_bottom = -53.504
 position = Vector2(-40, 0)
 
 [node name="BikeStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 312.0
+offset_left = 360.0
 offset_top = -304.0
-offset_right = 352.0
+offset_right = 400.0
 offset_bottom = -264.0
 
 [node name="VanStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 352.0
-offset_top = -160.0
-offset_right = 392.0
-offset_bottom = -120.0
+offset_left = 360.0
+offset_top = -176.0
+offset_right = 400.0
+offset_bottom = -136.0
 
 [node name="TruckStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 344.0
-offset_top = -24.0
-offset_right = 384.0
-offset_bottom = 16.0
+offset_left = 360.0
+offset_top = -48.0
+offset_right = 400.0
+offset_bottom = -8.0
 
 [node name="UnassignedStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
 offset_left = 640.0

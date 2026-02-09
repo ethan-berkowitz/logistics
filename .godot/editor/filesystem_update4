@@ -7,3 +7,5 @@ res://scenes/number_label.tscn
 res://scenes/main_label.tscn
 res://scenes/vehicle_label.tscn
 res://scenes/status_bar.tscn
+res://scenes/unary_operators.tscn
+res://scenes/unary_button.tscn
