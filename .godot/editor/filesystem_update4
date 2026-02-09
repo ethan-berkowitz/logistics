@@ -1,13 +1,2 @@
 res://scenes/game.tscn
-res://scenes/vehicle_staff.tscn
-res://scenes/progress_bar.tscn
-res://scenes/main_button.tscn
-res://scenes/research_menu.tscn
-res://scenes/number_label.tscn
-res://scenes/main_label.tscn
-res://scenes/vehicle_label.tscn
-res://scenes/status_bar.tscn
-res://scenes/unary_operators.tscn
-res://scenes/unary_button.tscn
 res://scripts/main.gd
-res://scripts/vehicle.gd

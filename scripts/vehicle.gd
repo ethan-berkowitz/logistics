@@ -66,9 +66,11 @@ func update_disabled(state: bool):
 		purchase_button.visible = false
 		label.visible = false
 		status_bar.visible = false
+		staff_control.visible = false
 	else:
 		disabled = false
 		purchase_button.visible = true
 		label.visible = true
 		status_bar.visible = true
+		staff_control.visible = true
 	

@@ -22,6 +22,26 @@ extends Node2D
 @onready var truck_status_bar: ProgressBar = $Status/TruckStatusBar
 @onready var truck_staff = $Staff/TruckStaff
 
+@onready var plane_purchase = $Buttons/PlanePurchase
+@onready var plane_label = $VehicleLabels/PlaneLabel
+@onready var plane_status_bar = $Status/PlaneStatusBar
+@onready var plane_staff = $Staff/PlaneStaff
+
+@onready var boat_purchase = $Buttons/BoatPurchase
+@onready var boat_label = $VehicleLabels/BoatLabel
+@onready var boat_status_bar = $Status/BoatStatusBar
+@onready var boat_staff = $Staff/BoatStaff
+
+@onready var train_purchase = $Buttons/TrainPurchase
+@onready var train_label = $VehicleLabels/TrainLabel
+@onready var train_status_bar = $Status/TrainStatusBar
+@onready var train_staff = $Staff/TrainStaff
+
+@onready var portal_purchase = $Buttons/PortalPurchase
+@onready var portal_label = $VehicleLabels/PortalLabel
+@onready var portal_status_bar = $Status/PortalStatusBar
+@onready var portal_staff = $Staff/PortalStaff
+
 var money := 10
 var buy_mult := 1
 var all_vehicles: Array[Vehicle]
@@ -29,6 +49,11 @@ var all_vehicles: Array[Vehicle]
 var bike: Vehicle
 var van: Vehicle
 var truck: Vehicle
+var plane: Vehicle
+var boat: Vehicle
+var train: Vehicle
+var portal: Vehicle
+
 
 var unassigned_staff := 5
 var total_staff := 5
@@ -46,8 +71,20 @@ func _ready():
 	van = Vehicle.new("Van", 20, 50, 25.0, 0, 0, 0, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
 	all_vehicles.append(van)
 
-	truck = Vehicle.new("Truck", 50, 100, 40.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
+	truck = Vehicle.new("Truck", 50, 200, 50.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
 	all_vehicles.append(truck)
+	
+	plane = Vehicle.new("Plane", 200, 500, 100.0, 0, 0, 0, 0.0, true, plane_label, plane_status_bar, plane_purchase, plane_staff)
+	all_vehicles.append(plane)
+	
+	boat = Vehicle.new("Boat", 500, 1500, 150.0, 0, 0, 0, 0.0, true, boat_label, boat_status_bar, boat_purchase, boat_staff)
+	all_vehicles.append(boat)
+	
+	train = Vehicle.new("Train", 1000, 3000, 200, 0, 0, 0, 0.0, true, train_label, train_status_bar, train_purchase, train_staff)
+	all_vehicles.append(train)
+	
+	portal = Vehicle.new("Portal", 2000, 10000, 500, 0, 0, 0, 0.0, true, portal_label, portal_status_bar, portal_purchase, portal_staff)
+	all_vehicles.append(portal)
 	
 	hire_staff_button.pressed.connect(hire_staff)
 	
@@ -136,3 +173,13 @@ func update_all_vehicle_status(delta):
 func unlock_vehicles():
 	if bike.amount >= 5:
 		van.update_disabled(false)
+	if van.amount >= 5:
+		truck.update_disabled(false)
+	if truck.amount >= 5:
+		plane.update_disabled(false)
+	if plane.amount >= 5:
+		boat.update_disabled(false)
+	if boat.amount >= 5:
+		train.update_disabled(false)
+	if train.amount >= 5:
+		portal.update_disabled(false)
