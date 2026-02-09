@@ -7,6 +7,10 @@ extends Node2D
 @onready var recruit_status_bar = $Staff/RecruitStatusBar
 @onready var hire_staff_button = $Staff/HireStaffButton
 
+@onready var x1_button = $x1_button
+@onready var x10_button = $x10_button
+@onready var max_button = $max_button
+
 @onready var bike_label: Label = $VehicleLabels/BikeLabel
 @onready var bike_purchase: Button = $Buttons/BikePurchase
 @onready var bike_status_bar: ProgressBar = $Status/BikeStatusBar
@@ -42,7 +46,7 @@ extends Node2D
 @onready var portal_status_bar = $Status/PortalStatusBar
 @onready var portal_staff = $Staff/PortalStaff
 
-var money := 10
+var money := 100000
 var buy_mult := 1
 var all_vehicles: Array[Vehicle]
 
@@ -53,7 +57,6 @@ var plane: Vehicle
 var boat: Vehicle
 var train: Vehicle
 var portal: Vehicle
-
 
 var unassigned_staff := 5
 var total_staff := 5
@@ -88,11 +91,35 @@ func _ready():
 	
 	hire_staff_button.pressed.connect(hire_staff)
 	
+	# Mult Buttons
+	x1_button.button_pressed = true
+	x1_button.pressed.connect(update_multiplier.bind(1))
+	x10_button.pressed.connect(update_multiplier.bind(10))
+	max_button.pressed.connect(update_multiplier.bind(100))
+	
 	connect_all_vehicle_buttons()
 	update_money(0)
 	update_all_vehicle_purchase_text()
 	update_all_value_labels()
 	update_hire_staff_text()
+
+func update_multiplier(value: int):
+	if value == 1:
+		x10_button.button_pressed = false
+		max_button.button_pressed = false
+	elif value == 10:
+		x1_button.button_pressed = false
+		max_button.button_pressed = false
+	else:
+		x1_button.button_pressed = false
+		x10_button.button_pressed = false
+	buy_mult = value
+	update_all_vehice_price_with_mult(buy_mult)
+	update_all_vehicle_purchase_text()
+
+func update_all_vehice_price_with_mult(buy_mult):
+	for vehicle in all_vehicles:
+		vehicle.update_price_with_mult(buy_mult)
 
 func hire_staff():
 	if money >= hire_staff_price:
@@ -135,8 +162,8 @@ func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 		update_all_vehicle_staff_text()
 
 func vehicle_purchase_pressed(vehicle: Vehicle):
-	if money >= vehicle.price * buy_mult:
-		update_money(-vehicle.price * buy_mult)
+	if money >= vehicle.price_with_mult:
+		update_money(-vehicle.price_with_mult)
 		vehicle.purchase(buy_mult)
 		unlock_vehicles()
 

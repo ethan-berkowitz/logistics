@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://4fve28hy52sf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d07u"]
+bg_color = Color(0.921569, 0.741176, 0.411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxfx0"]
+bg_color = Color(0.85098, 0.454902, 0.196078, 1)
+
+[node name="MultiplierButton" type="Button"]
+offset_right = 56.0
+offset_bottom = 56.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_2d07u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2d07u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hxfx0")
+toggle_mode = true

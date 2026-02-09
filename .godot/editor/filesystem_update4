@@ -1,2 +1,7 @@
 res://scenes/game.tscn
 res://scripts/main.gd
+res://scenes/multiplier_button.tscn
+res://scenes/unary_button.tscn
+res://scenes/progress_bar.tscn
+res://scenes/main_button.tscn
+res://scripts/vehicle.gd
