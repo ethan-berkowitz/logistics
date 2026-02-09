@@ -47,7 +47,7 @@ extends Node2D
 @onready var portal_staff = $Staff/PortalStaff
 
 var money := 100000
-var buy_mult := 1
+var active_multiplier := 1
 var all_vehicles: Array[Vehicle]
 
 var bike: Vehicle
@@ -58,8 +58,8 @@ var boat: Vehicle
 var train: Vehicle
 var portal: Vehicle
 
-var unassigned_staff := 5
-var total_staff := 5
+var unassigned_staff := 50
+var total_staff := 50
 var recruit_status := 0.0
 var recruit_duration := 20.0
 var recruit_duration_inc := 1.13
@@ -113,13 +113,13 @@ func update_multiplier(value: int):
 	else:
 		x1_button.button_pressed = false
 		x10_button.button_pressed = false
-	buy_mult = value
-	update_all_vehice_price_with_mult(buy_mult)
+	active_multiplier = value
+	update_all_vehice_price_with_mult(active_multiplier)
 	update_all_vehicle_purchase_text()
 
-func update_all_vehice_price_with_mult(buy_mult):
+func update_all_vehice_price_with_mult(active_multiplier):
 	for vehicle in all_vehicles:
-		vehicle.update_price_with_mult(buy_mult)
+		vehicle.update_price_with_mult(active_multiplier)
 
 func hire_staff():
 	if money >= hire_staff_price:
@@ -154,17 +154,36 @@ func connect_all_vehicle_buttons():
 		vehicle.staff_control.unary_operators.decrement.pressed.connect(vehicle_staff_pressed.bind(vehicle, -1))
 
 func vehicle_staff_pressed(vehicle: Vehicle, value: int):
-	if (value > 0 and unassigned_staff > 0) or (value < 0 and vehicle.staff > 0):
-		vehicle.staff += value
-		unassigned_staff -= value
-		vehicle.update_per_second_label()
-		update_staff_text()
-		update_all_vehicle_staff_text()
+	if ((value == 1 and unassigned_staff >= value * active_multiplier)
+		or (value == -1 and vehicle.staff >= active_multiplier)):
+		vehicle.staff += value * active_multiplier
+		unassigned_staff -= value * active_multiplier
+	elif value == -1 and vehicle.staff > 0:
+		unassigned_staff += vehicle.staff
+		vehicle.staff = 0
+	vehicle.update_per_second_label()
+	update_staff_text()
+	update_all_vehicle_staff_text()
+		
+# 	+ something and unassigned staff has that much
+#		+ staff
+#		- unassigned staff
+#		update
+#	- something and staff has that much
+#		- staff
+#		+ unassigned staff
+#		update
+#	- something and staff has greater than 0 but less than something
+#		staff = 0
+#		+ remainder
+#	- something and staff has 0
+#		nothing
+
 
 func vehicle_purchase_pressed(vehicle: Vehicle):
 	if money >= vehicle.price_with_mult:
 		update_money(-vehicle.price_with_mult)
-		vehicle.purchase(buy_mult)
+		vehicle.purchase(active_multiplier)
 		unlock_vehicles()
 
 func update_money(change: int):
@@ -177,7 +196,7 @@ func update_staff_text():
 	
 func update_all_vehicle_purchase_text():
 	for vehicle in all_vehicles:
-		vehicle.update_purchase_text(buy_mult)
+		vehicle.update_purchase_text(active_multiplier)
 		
 func update_all_vehicle_staff_text():
 	for vehicle in all_vehicles:

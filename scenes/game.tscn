@@ -259,14 +259,14 @@ offset_left = 640.0
 offset_top = -320.0
 offset_right = 824.0
 offset_bottom = -280.0
-text = "5"
+text = "50"
 
 [node name="TotalStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
 offset_left = 640.0
 offset_top = -368.0
 offset_right = 824.0
 offset_bottom = -328.0
-text = "5"
+text = "50"
 
 [node name="StaffHeader" parent="Main/Staff" instance=ExtResource("2_ojbq5")]
 offset_left = 238.0
