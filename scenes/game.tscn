@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxxbi8x3nojln"]
+[gd_scene load_steps=9 format=3 uid="uid://bxxbi8x3nojln"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4dnsm"]
+[ext_resource type="Texture2D" uid="uid://dw5vo6mvumg8" path="res://assets/userInterfaceOutline.png" id="2_l1kms"]
 [ext_resource type="PackedScene" uid="uid://cv744psbwfgs1" path="res://scenes/main_label.tscn" id="2_ojbq5"]
 [ext_resource type="PackedScene" uid="uid://ck2u1giyqndgm" path="res://scenes/main_button.tscn" id="3_kbxrh"]
 [ext_resource type="PackedScene" uid="uid://bqr2ss1m04kyp" path="res://scenes/vehicle_label.tscn" id="4_csleg"]
@@ -13,43 +14,46 @@
 [node name="Main" type="Node2D" parent="."]
 script = ExtResource("1_4dnsm")
 
+[node name="UserInterfaceOutline" type="Sprite2D" parent="Main"]
+texture = ExtResource("2_l1kms")
+
 [node name="Labels" type="Node2D" parent="Main"]
 
 [node name="OrdersHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -240.0
-offset_top = -136.0
-offset_right = -186.0
-offset_bottom = -110.0
+offset_left = -762.0
+offset_top = -390.0
+offset_right = -578.0
+offset_bottom = -334.0
 text = "Orders"
 
 [node name="VehicleHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -176.0
-offset_top = -136.0
-offset_right = -112.0
-offset_bottom = -110.0
+offset_left = -570.0
+offset_top = -390.0
+offset_right = -322.0
+offset_bottom = -334.0
 text = "Vehicles
 "
 
 [node name="PurchaseHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = -96.0
-offset_top = -136.0
-offset_right = -24.0
-offset_bottom = -110.0
+offset_left = -314.0
+offset_top = -390.0
+offset_right = -67.0
+offset_bottom = -334.0
 text = "Purchase
 "
 
 [node name="StatusHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = 8.0
-offset_top = -136.0
-offset_right = 57.0
-offset_bottom = -110.0
+offset_left = -59.0
+offset_top = -390.0
+offset_right = 190.0
+offset_bottom = -334.0
 text = "Status"
 
 [node name="MoneyHeader" parent="Main/Labels" instance=ExtResource("2_ojbq5")]
-offset_left = 200.0
-offset_top = -192.0
-offset_right = 253.0
-offset_bottom = -166.0
+offset_left = 466.0
+offset_top = -542.0
+offset_right = 722.0
+offset_bottom = -474.0
 text = "Money
 "
 
@@ -57,155 +61,156 @@ text = "Money
 position = Vector2(-40, 0)
 
 [node name="BikePurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
-offset_left = -56.0
-offset_top = -112.0
-offset_right = 15.5
-offset_bottom = -82.73
+offset_left = -241.0
+offset_top = -310.0
+offset_right = -58.0
+offset_bottom = -222.0
 
 [node name="VanPurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
-offset_left = -56.0
-offset_top = -72.0
-offset_right = 15.5
-offset_bottom = -42.73
+offset_left = -241.0
+offset_top = -181.0
+offset_right = -58.0
+offset_bottom = -94.0
 
 [node name="TruckPurchase" parent="Main/Buttons" instance=ExtResource("3_kbxrh")]
-offset_left = -56.0
-offset_top = -32.0
-offset_right = 15.5
-offset_bottom = -2.73
+offset_left = -241.0
+offset_top = -53.0
+offset_right = -58.0
+offset_bottom = 34.0
 
 [node name="VehicleLabels" type="Node2D" parent="Main"]
 position = Vector2(-40, 0)
 
 [node name="BikeLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
-offset_left = -136.0
-offset_top = -112.0
-offset_right = -76.0
-offset_bottom = -86.0
+offset_left = -530.0
+offset_top = -327.0
+offset_right = -282.0
+offset_bottom = -206.0
 text = "Bike x 0"
 
 [node name="VanLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
-offset_left = -136.0
-offset_top = -72.0
-offset_right = -76.0
-offset_bottom = -46.0
+offset_left = -530.0
+offset_top = -198.0
+offset_right = -282.0
+offset_bottom = -78.0
 text = "Van x 0"
 
 [node name="TruckLabel" parent="Main/VehicleLabels" instance=ExtResource("4_csleg")]
-offset_left = -136.0
-offset_top = -32.0
-offset_right = -66.0
-offset_bottom = -6.0
+offset_left = -530.0
+offset_top = -70.0
+offset_right = -282.0
+offset_bottom = 50.0
 text = "Truck x 0"
 
 [node name="OtherLabels" type="Node2D" parent="Main"]
 position = Vector2(-40, 0)
 
 [node name="MoneyLabel" parent="Main/OtherLabels" instance=ExtResource("5_3bjag")]
-offset_left = 304.0
-offset_top = -192.0
-offset_right = 344.0
-offset_bottom = -166.0
+offset_left = 510.0
+offset_top = -474.0
+offset_right = 758.0
+offset_bottom = -418.0
 text = "10"
 
 [node name="Status" type="Node" parent="Main"]
 
 [node name="BikeStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 8.0
-offset_top = -112.0
-offset_right = -175.872
-offset_bottom = -159.504
+offset_left = -43.0
+offset_top = -286.0
+offset_right = -98.872
+offset_bottom = -309.504
 
 [node name="VanStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 8.0
-offset_top = -72.0
-offset_right = -175.872
-offset_bottom = -119.504
+offset_left = -41.0
+offset_top = -158.0
+offset_right = -97.872
+offset_bottom = -181.504
 
 [node name="TruckStatusBar" parent="Main/Status" instance=ExtResource("6_nh13f")]
-offset_left = 8.0
-offset_top = -32.0
-offset_right = -175.872
-offset_bottom = -79.504
+offset_left = -42.0
+offset_top = -30.0
+offset_right = -98.872
+offset_bottom = -53.504
 
 [node name="Staff" type="Node2D" parent="Main"]
 position = Vector2(-40, 0)
 
 [node name="BikeStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 192.0
-offset_top = -112.0
-offset_right = 232.0
-offset_bottom = -72.0
+offset_left = 312.0
+offset_top = -304.0
+offset_right = 352.0
+offset_bottom = -264.0
 
 [node name="VanStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 192.0
-offset_top = -72.0
-offset_right = 232.0
-offset_bottom = -32.0
+offset_left = 352.0
+offset_top = -160.0
+offset_right = 392.0
+offset_bottom = -120.0
 
 [node name="TruckStaff" parent="Main/Staff" instance=ExtResource("7_67hdm")]
-offset_left = 192.0
-offset_top = -32.0
-offset_right = 232.0
-offset_bottom = 8.0
+offset_left = 344.0
+offset_top = -24.0
+offset_right = 384.0
+offset_bottom = 16.0
 
 [node name="UnassignedStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
-offset_left = 384.0
-offset_top = -144.0
-offset_right = 541.0
-offset_bottom = -118.0
+offset_left = 640.0
+offset_top = -320.0
+offset_right = 824.0
+offset_bottom = -280.0
 text = "5"
 
 [node name="TotalStaff" parent="Main/Staff" instance=ExtResource("5_3bjag")]
-offset_left = 336.0
-offset_top = -168.0
-offset_right = 438.0
-offset_bottom = -142.0
+offset_left = 640.0
+offset_top = -368.0
+offset_right = 824.0
+offset_bottom = -328.0
 text = "5"
 
 [node name="StaffHeader" parent="Main/Staff" instance=ExtResource("2_ojbq5")]
-offset_left = 152.0
-offset_top = -136.0
-offset_right = 192.0
-offset_bottom = -110.0
+offset_left = 238.0
+offset_top = -390.0
+offset_right = 422.0
+offset_bottom = -334.0
 text = "Staff"
 
 [node name="StaffRecruitLabel" parent="Main/Staff" instance=ExtResource("2_ojbq5")]
-offset_left = 240.0
-offset_top = -104.0
-offset_right = 336.0
-offset_bottom = -78.0
+offset_left = 509.0
+offset_top = -208.0
+offset_right = 758.0
+offset_bottom = -160.0
 text = "Staff Recruit"
 
 [node name="TotalStaffHeader" parent="Main/Staff" instance=ExtResource("2_ojbq5")]
-offset_left = 240.0
-offset_top = -168.0
-offset_right = 320.0
-offset_bottom = -142.0
+offset_left = 446.0
+offset_top = -370.0
+offset_right = 630.0
+offset_bottom = -330.0
 text = "Total Staff
 "
 
 [node name="UnassignedStaffHeader" parent="Main/Staff" instance=ExtResource("2_ojbq5")]
-offset_left = 240.0
-offset_top = -144.0
-offset_right = 370.0
-offset_bottom = -118.0
+offset_left = 446.0
+offset_top = -322.0
+offset_right = 630.0
+offset_bottom = -282.0
+theme_override_font_sizes/font_size = 21
 text = "Unassigned Staff
 "
 
 [node name="RecruitStatusBar" parent="Main/Staff" instance=ExtResource("6_nh13f")]
-offset_left = 240.0
-offset_top = -80.0
-offset_right = 328.0
-offset_bottom = -64.0
+offset_left = 511.0
+offset_top = -154.0
+offset_right = 758.0
+offset_bottom = -114.0
 
 [node name="HireStaffButton" parent="Main/Staff" instance=ExtResource("3_kbxrh")]
-offset_left = 248.0
-offset_top = -56.0
-offset_right = 312.0
-offset_bottom = -24.0
+offset_left = 511.0
+offset_top = -98.0
+offset_right = 758.0
+offset_bottom = -10.0
 text = "Hire Staff
 $100"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(1.05, 1.05)
