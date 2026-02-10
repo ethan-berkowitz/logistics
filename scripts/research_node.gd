@@ -10,6 +10,7 @@ var status := 0.0
 var duration := 10.0
 var active := false
 var complete := false
+signal sig_complete
 
 func _ready():
 	button.pressed.connect(on_button_pressed)
@@ -21,10 +22,10 @@ func _process(delta):
 		progress_bar.value = progress
 		if progress >= 1:
 			complete = true
+			emit_signal("sig_complete")
 			active = false
 
 func on_button_pressed():
-	print("pressed")
 	if !complete:
 		active = true
 		

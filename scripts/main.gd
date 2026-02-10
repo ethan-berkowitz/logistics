@@ -68,6 +68,7 @@ var recruit_duration := 20.0
 var recruit_duration_inc := 1.13
 var hire_staff_price := 100
 var hire_staff_price_inc := 1.25
+var recruit_unlocked = false
 
 func _ready():
 	init_vehicles()
@@ -77,15 +78,22 @@ func _ready():
 	update_all_vehicle_purchase_text()
 	update_all_value_labels()
 	update_hire_staff_text()
+	connect_research_menu_nodes()
 
-func init_other_buttons():
-	hire_staff_button.pressed.connect(hire_staff)
-	research_button.pressed.connect(open_research_menu)
-	# Mult Buttons
-	x1_button.button_pressed = true
-	x1_button.pressed.connect(update_multiplier.bind(1))
-	x10_button.pressed.connect(update_multiplier.bind(10))
-	max_button.pressed.connect(update_multiplier.bind(100))
+func connect_research_menu_nodes():
+	for node in research_menu.all_research_nodes:
+		node.sig_complete.connect(research_complete.bind(node))
+
+func research_complete(type):
+	print("RC HERE")
+	if type == research_menu.hr:
+		recruit_unlocked = true
+	pass
+
+func _process(delta):
+	update_all_vehicle_status(delta)
+	if recruit_unlocked:
+		update_recruitment(delta)
 
 func init_vehicles():
 	bike = Vehicle.new("Bike", 10, 5, 5.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
@@ -109,6 +117,28 @@ func init_vehicles():
 	portal = Vehicle.new("Portal", 2000, 10000, 500, 0, 0, 0, 0.0, true, portal_label, portal_status_bar, portal_purchase, portal_staff)
 	all_vehicles.append(portal)
 
+func init_other_buttons():
+	hire_staff_button.pressed.connect(hire_staff)
+	research_button.pressed.connect(open_research_menu)
+	# Mult Buttons
+	x1_button.button_pressed = true
+	x1_button.pressed.connect(update_multiplier.bind(1))
+	x10_button.pressed.connect(update_multiplier.bind(10))
+	max_button.pressed.connect(update_multiplier.bind(100))
+
+func connect_all_vehicle_buttons():
+	for vehicle in all_vehicles:
+		vehicle.purchase_button.pressed.connect(vehicle_purchase_pressed.bind(vehicle))
+		vehicle.staff_control.unary_operators.increment.pressed.connect(vehicle_staff_pressed.bind(vehicle, 1))
+		vehicle.staff_control.unary_operators.decrement.pressed.connect(vehicle_staff_pressed.bind(vehicle, -1))
+
+func update_money(change: int):
+	money += change
+	money_label.text = "$" + str(money)
+
+func update_all_vehicle_purchase_text():
+	for vehicle in all_vehicles:
+		vehicle.update_purchase_text(active_multiplier)
 func open_research_menu():
 	research_menu.visible = true
 
@@ -142,9 +172,6 @@ func hire_staff():
 func update_hire_staff_text():
 	hire_staff_button.text = "Hire Staff\n$" + str(hire_staff_price)
 
-func _process(delta):
-	update_all_vehicle_status(delta)
-	update_recruitment(delta)
 
 func update_recruitment(delta):
 	recruit_status += delta
@@ -156,11 +183,6 @@ func update_recruitment(delta):
 		total_staff += 1
 		update_staff_text()
 
-func connect_all_vehicle_buttons():
-	for vehicle in all_vehicles:
-		vehicle.purchase_button.pressed.connect(vehicle_purchase_pressed.bind(vehicle))
-		vehicle.staff_control.unary_operators.increment.pressed.connect(vehicle_staff_pressed.bind(vehicle, 1))
-		vehicle.staff_control.unary_operators.decrement.pressed.connect(vehicle_staff_pressed.bind(vehicle, -1))
 
 func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 	if ((value == 1 and unassigned_staff >= value * active_multiplier)
@@ -173,39 +195,16 @@ func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 	vehicle.update_per_second_label()
 	update_staff_text()
 	update_all_vehicle_staff_text()
-		
-# 	+ something and unassigned staff has that much
-#		+ staff
-#		- unassigned staff
-#		update
-#	- something and staff has that much
-#		- staff
-#		+ unassigned staff
-#		update
-#	- something and staff has greater than 0 but less than something
-#		staff = 0
-#		+ remainder
-#	- something and staff has 0
-#		nothing
-
 
 func vehicle_purchase_pressed(vehicle: Vehicle):
 	if money >= vehicle.price_with_mult:
 		update_money(-vehicle.price_with_mult)
 		vehicle.purchase(active_multiplier)
 		unlock_vehicles()
-
-func update_money(change: int):
-	money += change
-	money_label.text = "$" + str(money)
 	
 func update_staff_text():
 	total_staff_label.text = str(total_staff)
 	unassigned_staff_label.text = str(unassigned_staff)
-	
-func update_all_vehicle_purchase_text():
-	for vehicle in all_vehicles:
-		vehicle.update_purchase_text(active_multiplier)
 		
 func update_all_vehicle_staff_text():
 	for vehicle in all_vehicles:
