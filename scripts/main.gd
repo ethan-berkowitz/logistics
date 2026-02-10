@@ -7,9 +7,12 @@ extends Node2D
 @onready var recruit_status_bar = $Staff/RecruitStatusBar
 @onready var hire_staff_button = $Staff/HireStaffButton
 
-@onready var x1_button = $x1_button
-@onready var x10_button = $x10_button
-@onready var max_button = $max_button
+@onready var x1_button = $MultiplierButtons/x1_button
+@onready var x10_button = $MultiplierButtons/x10_button
+@onready var max_button = $MultiplierButtons/max_button
+
+@onready var research_menu = $Menus/ResearchMenu
+@onready var research_button = $Menus/ResearchButton
 
 @onready var bike_label: Label = $VehicleLabels/BikeLabel
 @onready var bike_purchase: Button = $Buttons/BikePurchase
@@ -67,7 +70,24 @@ var hire_staff_price := 100
 var hire_staff_price_inc := 1.25
 
 func _ready():
-	# price, value, duration
+	init_vehicles()
+	init_other_buttons()
+	connect_all_vehicle_buttons()
+	update_money(0)
+	update_all_vehicle_purchase_text()
+	update_all_value_labels()
+	update_hire_staff_text()
+
+func init_other_buttons():
+	hire_staff_button.pressed.connect(hire_staff)
+	research_button.pressed.connect(open_research_menu)
+	# Mult Buttons
+	x1_button.button_pressed = true
+	x1_button.pressed.connect(update_multiplier.bind(1))
+	x10_button.pressed.connect(update_multiplier.bind(10))
+	max_button.pressed.connect(update_multiplier.bind(100))
+
+func init_vehicles():
 	bike = Vehicle.new("Bike", 10, 5, 5.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
 	all_vehicles.append(bike)
 	
@@ -88,20 +108,9 @@ func _ready():
 	
 	portal = Vehicle.new("Portal", 2000, 10000, 500, 0, 0, 0, 0.0, true, portal_label, portal_status_bar, portal_purchase, portal_staff)
 	all_vehicles.append(portal)
-	
-	hire_staff_button.pressed.connect(hire_staff)
-	
-	# Mult Buttons
-	x1_button.button_pressed = true
-	x1_button.pressed.connect(update_multiplier.bind(1))
-	x10_button.pressed.connect(update_multiplier.bind(10))
-	max_button.pressed.connect(update_multiplier.bind(100))
-	
-	connect_all_vehicle_buttons()
-	update_money(0)
-	update_all_vehicle_purchase_text()
-	update_all_value_labels()
-	update_hire_staff_text()
+
+func open_research_menu():
+	research_menu.visible = true
 
 func update_multiplier(value: int):
 	if value == 1:

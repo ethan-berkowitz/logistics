@@ -1,7 +1,9 @@
+res://scenes/button_and_progress_bar.tscn
+res://scripts/button_and_progress_bar.gd
+res://scenes/research_node.tscn
+res://scenes/research_menu.tscn
 res://scenes/game.tscn
-res://scripts/main.gd
-res://scenes/multiplier_button.tscn
-res://scenes/unary_button.tscn
+res://scripts/research_node.gd
+res://scripts/research_menu.gd
 res://scenes/progress_bar.tscn
-res://scenes/main_button.tscn
-res://scripts/vehicle.gd
+res://scripts/main.gd

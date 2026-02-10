@@ -1,7 +1,97 @@
-[gd_scene format=3 uid="uid://coo7gem0knry3"]
+[gd_scene load_steps=7 format=3 uid="uid://coo7gem0knry3"]
 
-[node name="ResearchMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[ext_resource type="Texture2D" uid="uid://bxut7o41rl1y1" path="res://assets/menu_window.png" id="1_okgfh"]
+[ext_resource type="Script" path="res://scripts/research_menu.gd" id="2_302jf"]
+[ext_resource type="PackedScene" uid="uid://81rtenwebd78" path="res://scenes/research_node.tscn" id="2_jrcek"]
+[ext_resource type="PackedScene" uid="uid://ck2u1giyqndgm" path="res://scenes/main_button.tscn" id="4_qimly"]
+[ext_resource type="PackedScene" uid="uid://cv744psbwfgs1" path="res://scenes/main_label.tscn" id="5_ioyc7"]
+[ext_resource type="PackedScene" uid="uid://cs3da7nnx6gf2" path="res://scenes/vehicle_staff.tscn" id="6_v6mqk"]
+
+[node name="ResearchMenu" type="Sprite2D"]
+texture = ExtResource("1_okgfh")
+script = ExtResource("2_302jf")
+
+[node name="ResearchTypes" type="Node2D" parent="."]
+
+[node name="HR" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -536.0
+offset_top = 192.0
+offset_right = -360.0
+offset_bottom = 272.0
+
+[node name="Marketing" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -312.0
+offset_top = 88.0
+offset_right = -136.0
+offset_bottom = 168.0
+
+[node name="Maintenence" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -312.0
+offset_top = 296.0
+offset_right = -136.0
+offset_bottom = 376.0
+
+[node name="Contractors" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -48.0
+offset_top = -8.0
+offset_right = 128.0
+offset_bottom = 72.0
+
+[node name="MarketingPower" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -48.0
+offset_top = 192.0
+offset_right = 128.0
+offset_bottom = 272.0
+
+[node name="RailwayManagement" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = -56.0
+offset_top = 392.0
+offset_right = 120.0
+offset_bottom = 472.0
+
+[node name="Efficiency" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = 232.0
+offset_top = 192.0
+offset_right = 408.0
+offset_bottom = 272.0
+
+[node name="Synergies" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = 232.0
+offset_top = -8.0
+offset_right = 408.0
+offset_bottom = 72.0
+
+[node name="Advanced R&D" parent="ResearchTypes" instance=ExtResource("2_jrcek")]
+offset_left = 240.0
+offset_top = 392.0
+offset_right = 416.0
+offset_bottom = 472.0
+
+[node name="CloseMenu" parent="." instance=ExtResource("4_qimly")]
+offset_left = 520.0
+offset_top = -368.0
+offset_right = 584.0
+offset_bottom = -304.0
+text = "X"
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="StaffLabel" parent="Labels" instance=ExtResource("5_ioyc7")]
+offset_left = -75.0
+offset_top = -222.0
+offset_right = 76.0
+offset_bottom = -173.0
+text = "Staff"
+
+[node name="ResearchAndDevLabel" parent="Labels" instance=ExtResource("5_ioyc7")]
+offset_left = -216.0
+offset_top = -326.0
+offset_right = 217.0
+offset_bottom = -264.0
+text = "Research & Development"
+
+[node name="StaffControl" parent="." instance=ExtResource("6_v6mqk")]
+offset_left = 36.0
+offset_top = -166.0
+offset_right = 76.0
+offset_bottom = -126.0

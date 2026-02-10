@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxxbi8x3nojln"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxbi8x3nojln"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4dnsm"]
 [ext_resource type="Texture2D" uid="uid://dw5vo6mvumg8" path="res://assets/userInterfaceOutline.png" id="2_l1kms"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://6n4ioryd18bo" path="res://scenes/progress_bar.tscn" id="6_nh13f"]
 [ext_resource type="PackedScene" uid="uid://cs3da7nnx6gf2" path="res://scenes/vehicle_staff.tscn" id="7_67hdm"]
 [ext_resource type="PackedScene" uid="uid://4fve28hy52sf" path="res://scenes/multiplier_button.tscn" id="9_qdu77"]
+[ext_resource type="PackedScene" uid="uid://coo7gem0knry3" path="res://scenes/research_menu.tscn" id="10_fgeut"]
 
 [node name="Game" type="Node2D"]
 
@@ -315,26 +316,41 @@ $100"
 
 [node name="MultiplierButtons" type="Node2D" parent="Main"]
 
-[node name="x1_button" parent="Main" instance=ExtResource("9_qdu77")]
+[node name="x1_button" parent="Main/MultiplierButtons" instance=ExtResource("9_qdu77")]
 offset_left = 198.0
 offset_top = -450.0
 offset_right = 254.0
 offset_bottom = -396.0
 text = "x1"
 
-[node name="x10_button" parent="Main" instance=ExtResource("9_qdu77")]
+[node name="x10_button" parent="Main/MultiplierButtons" instance=ExtResource("9_qdu77")]
 offset_left = 262.0
 offset_top = -450.0
 offset_right = 318.0
 offset_bottom = -396.0
 text = "x10"
 
-[node name="max_button" parent="Main" instance=ExtResource("9_qdu77")]
+[node name="max_button" parent="Main/MultiplierButtons" instance=ExtResource("9_qdu77")]
 offset_left = 326.0
 offset_top = -450.0
 offset_right = 382.0
 offset_bottom = -396.0
 text = "x100"
+
+[node name="Menus" type="Node2D" parent="Main"]
+
+[node name="ResearchMenu" parent="Main/Menus" instance=ExtResource("10_fgeut")]
+visible = false
+z_index = 1
+position = Vector2(40, 0)
+
+[node name="ResearchButton" parent="Main/Menus" instance=ExtResource("3_kbxrh")]
+offset_left = 438.0
+offset_top = 78.0
+offset_right = 749.0
+offset_bottom = 165.0
+text = "Research &
+Development"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.05, 1.05)

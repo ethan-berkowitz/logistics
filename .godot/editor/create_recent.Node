@@ -1,4 +1,6 @@
 Node2D
+Label
+ProgressBar
 Button
 Control
 Sprite2D

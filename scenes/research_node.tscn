@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://81rtenwebd78"]
+
+[ext_resource type="Script" path="res://scripts/research_node.gd" id="1_bf3va"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o0pl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iysww"]
+bg_color = Color(0.85098, 0.454902, 0.196078, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiuf8"]
+
+[node name="ResearchNode" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 176.0
+offset_bottom = 80.0
+script = ExtResource("1_bf3va")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0o0pl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iysww")
+max_value = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 80.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kiuf8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kiuf8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kiuf8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kiuf8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiuf8")
