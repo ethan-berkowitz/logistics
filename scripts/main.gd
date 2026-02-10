@@ -18,36 +18,43 @@ extends Node2D
 @onready var bike_purchase: Button = $Buttons/BikePurchase
 @onready var bike_status_bar: ProgressBar = $Status/BikeStatusBar
 @onready var bike_staff = $Staff/BikeStaff
+@onready var bike_orders = $OrderLabels/BikeOrdersLabel
 
 @onready var van_purchase: Button = $Buttons/VanPurchase
 @onready var van_label: Label = $VehicleLabels/VanLabel
 @onready var van_status_bar: ProgressBar = $Status/VanStatusBar
 @onready var van_staff = $Staff/VanStaff
+@onready var van_orders = $OrderLabels/VanOrdersLabel
 
 @onready var truck_purchase: Button = $Buttons/TruckPurchase
 @onready var truck_label: Label = $VehicleLabels/TruckLabel
 @onready var truck_status_bar: ProgressBar = $Status/TruckStatusBar
 @onready var truck_staff = $Staff/TruckStaff
+@onready var truck_orders = $OrderLabels/TruckOrdersLabel
 
 @onready var plane_purchase = $Buttons/PlanePurchase
 @onready var plane_label = $VehicleLabels/PlaneLabel
 @onready var plane_status_bar = $Status/PlaneStatusBar
 @onready var plane_staff = $Staff/PlaneStaff
+@onready var plane_orders = $OrderLabels/PlaneOrdersLabel
 
 @onready var boat_purchase = $Buttons/BoatPurchase
 @onready var boat_label = $VehicleLabels/BoatLabel
 @onready var boat_status_bar = $Status/BoatStatusBar
 @onready var boat_staff = $Staff/BoatStaff
+@onready var boat_orders = $OrderLabels/BoatOrdersLabel
 
 @onready var train_purchase = $Buttons/TrainPurchase
 @onready var train_label = $VehicleLabels/TrainLabel
 @onready var train_status_bar = $Status/TrainStatusBar
 @onready var train_staff = $Staff/TrainStaff
+@onready var train_orders = $OrderLabels/TrainOrdersLabel
 
 @onready var portal_purchase = $Buttons/PortalPurchase
 @onready var portal_label = $VehicleLabels/PortalLabel
 @onready var portal_status_bar = $Status/PortalStatusBar
 @onready var portal_staff = $Staff/PortalStaff
+@onready var portal_orders = $OrderLabels/PortalOrdersLabel
 
 var money := 100000
 var active_multiplier := 1
@@ -86,9 +93,12 @@ func connect_research_menu_nodes():
 		node.sig_complete.connect(research_complete.bind(node))
 
 func research_complete(type):
-	print("RC HERE")
 	if type == research_menu.hr:
 		recruit_unlocked = true
+	if type == research_menu.marketing:
+		pass
+	if type == research_menu.contractors:
+		hire_staff_button.visible = true
 	pass
 
 func _process(delta):
@@ -97,25 +107,25 @@ func _process(delta):
 		update_recruitment(delta)
 
 func init_vehicles():
-	bike = Vehicle.new("Bike", 10, 5, 5.0, 0, 0, 0, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
+	bike = Vehicle.new("Bike", 10, 5, 5.0, 0, 0, 50, 0.0, false, bike_label, bike_status_bar, bike_purchase, bike_staff)
 	all_vehicles.append(bike)
 	
-	van = Vehicle.new("Van", 20, 50, 25.0, 0, 0, 0, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
+	van = Vehicle.new("Van", 20, 50, 25.0, 0, 0, 50, 0.0, true, van_label, van_status_bar, van_purchase, van_staff)
 	all_vehicles.append(van)
 
-	truck = Vehicle.new("Truck", 50, 200, 50.0, 0, 0, 0, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
+	truck = Vehicle.new("Truck", 50, 200, 50.0, 0, 0, 50, 0.0, true, truck_label, truck_status_bar, truck_purchase, truck_staff)
 	all_vehicles.append(truck)
 	
-	plane = Vehicle.new("Plane", 200, 500, 100.0, 0, 0, 0, 0.0, true, plane_label, plane_status_bar, plane_purchase, plane_staff)
+	plane = Vehicle.new("Plane", 200, 500, 100.0, 0, 0, 50, 0.0, true, plane_label, plane_status_bar, plane_purchase, plane_staff)
 	all_vehicles.append(plane)
 	
-	boat = Vehicle.new("Boat", 500, 1500, 150.0, 0, 0, 0, 0.0, true, boat_label, boat_status_bar, boat_purchase, boat_staff)
+	boat = Vehicle.new("Boat", 500, 1500, 150.0, 0, 0, 50, 0.0, true, boat_label, boat_status_bar, boat_purchase, boat_staff)
 	all_vehicles.append(boat)
 	
-	train = Vehicle.new("Train", 1000, 3000, 200, 0, 0, 0, 0.0, true, train_label, train_status_bar, train_purchase, train_staff)
+	train = Vehicle.new("Train", 1000, 3000, 200, 0, 0, 50, 0.0, true, train_label, train_status_bar, train_purchase, train_staff)
 	all_vehicles.append(train)
 	
-	portal = Vehicle.new("Portal", 2000, 10000, 500, 0, 0, 0, 0.0, true, portal_label, portal_status_bar, portal_purchase, portal_staff)
+	portal = Vehicle.new("Portal", 2000, 10000, 500, 0, 0, 50, 0.0, true, portal_label, portal_status_bar, portal_purchase, portal_staff)
 	all_vehicles.append(portal)
 
 func init_other_buttons():
@@ -126,6 +136,8 @@ func init_other_buttons():
 	x1_button.pressed.connect(update_multiplier.bind(1))
 	x10_button.pressed.connect(update_multiplier.bind(10))
 	max_button.pressed.connect(update_multiplier.bind(100))
+	
+	hire_staff_button.visible = false
 
 func connect_research_menu_unary():
 	research_menu.staff_control.unary_operators.increment.pressed.connect(research_staff_pressed.bind(1))

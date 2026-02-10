@@ -1,10 +1,2 @@
-res://scenes/button_and_progress_bar.tscn
-res://scripts/button_and_progress_bar.gd
-res://scenes/research_node.tscn
-res://scenes/research_menu.tscn
 res://scenes/game.tscn
-res://scripts/research_node.gd
-res://scripts/research_menu.gd
-res://scenes/progress_bar.tscn
 res://scripts/main.gd
-res://scenes/vehicle_staff.tscn
