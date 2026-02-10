@@ -7,3 +7,4 @@ res://scripts/research_node.gd
 res://scripts/research_menu.gd
 res://scenes/progress_bar.tscn
 res://scripts/main.gd
+res://scenes/vehicle_staff.tscn

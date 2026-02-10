@@ -11,9 +11,10 @@ extends Sprite2D
 @onready var advanced_r_d = $"ResearchTypes/Advanced R&D"
 
 @onready var close_menu = $CloseMenu
+@onready var staff_control = $StaffControl
 
 var all_research_nodes = []
-var staff := 3
+var staff := 0
 
 func _ready():
 	all_research_nodes = [
@@ -53,3 +54,10 @@ func on_research_node_pressed(node):
 		for other in all_research_nodes:
 			if other != node:
 				other.active = false
+
+func update_all_research_node_staff():
+	for node in all_research_nodes:
+		node.staff = staff
+				
+func update_staff_text():
+	staff_control.staff_amount_label.text = str(staff)

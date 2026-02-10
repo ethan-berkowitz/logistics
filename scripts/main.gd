@@ -79,6 +79,7 @@ func _ready():
 	update_all_value_labels()
 	update_hire_staff_text()
 	connect_research_menu_nodes()
+	connect_research_menu_unary()
 
 func connect_research_menu_nodes():
 	for node in research_menu.all_research_nodes:
@@ -126,6 +127,24 @@ func init_other_buttons():
 	x10_button.pressed.connect(update_multiplier.bind(10))
 	max_button.pressed.connect(update_multiplier.bind(100))
 
+func connect_research_menu_unary():
+	research_menu.staff_control.unary_operators.increment.pressed.connect(research_staff_pressed.bind(1))
+	research_menu.staff_control.unary_operators.decrement.pressed.connect(research_staff_pressed.bind(-1))
+
+func research_staff_pressed(value: int):
+	print("staff pressed: " + str(value))
+	if ((value == 1 and unassigned_staff >= value * active_multiplier)
+		or (value == -1 and research_menu.staff >= active_multiplier)):
+		research_menu.staff += value * active_multiplier
+		unassigned_staff -= value * active_multiplier
+	elif value == -1 and research_menu.staff > 0:
+		unassigned_staff += research_menu.staff
+		research_menu.staff = 0
+	research_menu.update_staff_text()
+	research_menu.update_all_research_node_staff()
+	update_staff_text()
+	
+
 func connect_all_vehicle_buttons():
 	for vehicle in all_vehicles:
 		vehicle.purchase_button.pressed.connect(vehicle_purchase_pressed.bind(vehicle))
@@ -172,7 +191,6 @@ func hire_staff():
 func update_hire_staff_text():
 	hire_staff_button.text = "Hire Staff\n$" + str(hire_staff_price)
 
-
 func update_recruitment(delta):
 	recruit_status += delta
 	recruit_status_bar.value = recruit_status / recruit_duration
@@ -182,7 +200,6 @@ func update_recruitment(delta):
 		unassigned_staff += 1
 		total_staff += 1
 		update_staff_text()
-
 
 func vehicle_staff_pressed(vehicle: Vehicle, value: int):
 	if ((value == 1 and unassigned_staff >= value * active_multiplier)
